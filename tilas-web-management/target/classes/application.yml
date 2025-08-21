@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: tilas-web
+
+  # 数据库连接配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/tilas  # 数据库地址
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL驱动
+    username: root  # 数据库账号
+    password: 123456  # 数据库密码（需修改）
+
+# PageHelper分页插件配置
+pagehelper:
+  helper-dialect: mysql  # 指定数据库方言
+  reasonable: true  # 合理化参数，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+  support-methods-arguments: true  # 支持通过Mapper接口参数来传递分页参数
+  params: count=countSql  # 用于从对象中根据属性名取值
+
+# MyBatis配置
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 控制台输出SQL日志
+  mapper-locations: classpath:org.wujunyang.mapper/*.xml  # XML映射文件路径
+  map-underscore-to-camel-case: true
+
+# application.yml
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+multipath:
+  max-file-size: 10MB
+  max-request-size: 100MB
+
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    bucketName: aa-aai
+    region: cn-beijing
